@@ -1,0 +1,25 @@
+addCustomJavaHomeMetadata()
+addCustomJavaSourceVersionMetadata()
+
+void addCustomJavaHomeMetadata() {
+	def customJavaHome = System.getProperty("customJavaHome")
+	if (customJavaHome) {
+		buildScan.value "Custom JAVA_HOME", customJavaHome
+	}
+}
+
+void addCustomJavaSourceVersionMetadata() {
+	def customJavaSourceVersion = System.getProperty("customJavaSourceVersion")
+	if (customJavaSourceVersion) {
+		buildScan.value "Custom Java Source Version", customJavaSourceVersion
+	}
+}
+
+String addGitMetadata(String... args) {
+	def stdout = new ByteArrayOutputStream()
+	exec {
+		executable "cmd"
+		standardOutput = stdout;
+	}
+	return stdout.toString().trim()
+}
