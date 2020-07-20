@@ -1,24 +1,28 @@
-package com.study.test;
+package com.study.bean;
 
 
-import com.study.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 
 /**
  * java
  *
  * @author zongchao
  */
-@Component(value = "testBean")
-public class TestBean {
+@Component
+public class PostConstructBean {
 
 	@Autowired
-	private TestC testC;
+	private CommonBean commonBean;
 
-	public TestBean(){
-		System.out.println("TestBean-init");
+	@PostConstruct
+	public void init(){
+		System.out.println("testBean PostConstruct");
 	}
+
+
 
 	public void test(){
 		System.out.println("testBean");

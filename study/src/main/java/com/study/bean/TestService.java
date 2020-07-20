@@ -1,7 +1,5 @@
-package com.study.service;
+package com.study.bean;
 
 public interface TestService {
 	void test();
-
-	void test2();
 }

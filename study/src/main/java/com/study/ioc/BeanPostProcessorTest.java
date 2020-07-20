@@ -9,6 +9,15 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class BeanPostProcessorTest implements BeanPostProcessor {
+
+	/**
+	 * 检查Aware相关接口并设置相关依赖之前
+	 * 各种init之前（InitializingBean、PostConstruct）
+	 * @param bean the new bean instance
+	 * @param beanName the name of the bean
+	 * @return
+	 * @throws BeansException
+	 */
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 		if ("testBean".equals(beanName)){
@@ -21,6 +30,13 @@ public class BeanPostProcessorTest implements BeanPostProcessor {
 		return bean;
 	}
 
+	/**
+	 * 各种init之后（InitializingBean、PostConstruct）
+	 * @param bean the new bean instance
+	 * @param beanName the name of the bean
+	 * @return
+	 * @throws BeansException
+	 */
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
 		if ("testBean".equals(beanName)){
