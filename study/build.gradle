@@ -15,6 +15,9 @@ dependencies {
     compile(project(":spring-beans"))
     compile(project(":spring-core"))
     compile(project(":spring-context"))
+    compile(project(":spring-aop"))
+    compile("org.aspectj:aspectjweaver")
+    compileOnly("org.aspectj:aspectjrt")
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.13.1'
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.13.1'
