@@ -1,7 +1,10 @@
 package com.study.bean;
 
 
+import com.study.MayConfig;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -12,7 +15,7 @@ import javax.annotation.PostConstruct;
  * @author zongchao
  */
 @Component
-public class PostConstructBean {
+public class PostConstructBean implements InitializingBean {
 
 	@Autowired
 	private CommonBean commonBean;
@@ -26,5 +29,21 @@ public class PostConstructBean {
 
 	public void test(){
 		System.out.println("testBean");
+	}
+
+	/**
+	 * 发生在PostConstruct之后
+	 * @throws Exception
+	 */
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		System.out.println("afterPropertiesSet");
+	}
+
+	public static void main(String[] args) {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MayConfig.class);
+		PostConstructBean bean = context.getBean(PostConstructBean.class);
+		bean.test();
+
 	}
 }
